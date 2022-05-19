@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //variaveis
+        var nome = "PEDRO"
+
+        // Array
+        var dadosDoPedro = [
+            "Rua touro 55",
+            789,
+            10.50,
+            nome
+        ];
+
+        //objeto
+        var Objeto = {
+            idade: 184,
+            array: dadosDoPedro,
+            texto:"BOTEi UM TEXTO"
+        }
+
+        //funcões
+        function ExibePaNois(){
+            alert(nome)
+            console.log(nome)
+
+            //exibir um obj
+            console.log(Objeto)
+
+            //exibir um array
+            console.log(dadosDoPedro)
+
+            //exibir um unico item do objeto
+            console.log(Objeto.texto)
+
+            //exibir um unico item do array (posições são contadas iniciando a partir do 0)
+            console.log(dadosDoPedro[1])
+        }
+
+        ExibePaNois()
+    </script>
+</body>
+</html>
