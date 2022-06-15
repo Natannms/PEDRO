@@ -1,0 +1,9 @@
+BACKEND entra num site de cotação,
+faz um GET de todas as cotações,
+SALVA no banco de COTACAODEMOEDAS-DONATAN
+
+
+O BACKEND do Natan tem uma api com rota /cotacoes que devolve uma lista de cotações
+
+
+o frontend do pedro, faz um get em www.natan.com.br/cotacoes, e recebe uma lista de cotações

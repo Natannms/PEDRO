@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>BUSCA CEP</title>
+</head>
+<body>
+    <div class="flex p-4 flex-col bg-indigo-700">
+        <label class="text-white" for="cep">CEP:</label>
+        <input class="w-2/12" type="text" name="cep" id="cep" placeholder="Seu cep" value="31872050">
+        <button onclick="buscaCep()" class="p-4 text-white bg-purple-700 w-2/12 mt-4">Buscar</button>
+    </div>
+
+    <div>
+        <ul>
+            <li><strong>Bairro</strong>: <div id="bairro">Local de escrever o bairro</div></li>
+            <li><strong>Estado</strong>: <div id="estado">Local de escrever o estado</div></li>
+            <li><strong>Rua</strong>: <div id="rua">Local de escrever a Rua</div></li>
+        </ul>
+    </div>
+    <script>
+        function InsertText(bairro, estado, rua){
+            const localBairro = document.getElementById('bairro');
+            const localEstado = document.getElementById('estado');
+            const localRua = document.getElementById('rua');
+
+            localBairro.innerHTML = bairro;
+            localEstado.innerHTML = estado;
+            localRua.innerHTML = rua;
+        }
+
+        function buscaCep(){
+            const inputCep = document.getElementById('cep');
+            const url = `https://viacep.com.br/ws/${inputCep.value}/json/`;
+            
+            //fetch API
+            const requisicao = fetch(url) // executa uma requisição => retorna uma PROMESSA => que Precisa de tratamento
+            //metodos de tratamento : then(), catch(), atributo body:readableStream 
+
+            requisicao.then((response)=>{ // tratando a PROMESSA
+                //convertendo o BODY em JSON 
+                /* O metodo .json() usará a propriedade body do objeto response => que é uma PROMESSA */
+                const obj = response.json(); 
+
+                obj.then(dados =>{ // trando a PROMESSA
+                    InsertText(dados.bairro, dados.uf, dados.logradouro)
+                    console.log(dados)
+                }).catch(erro =>{
+                    console.log(erro)
+                })
+
+            }).catch((erro)=>{
+                console.log(erro)
+            })
+        }
+    </script>
+    <!-- 
+        <FrontEnd> // que é a interação com o usuario
+            * Exibir uma lista de todos os celulares
+            * Exibir a taxa cobrada de um determinado usuario
+            * Exibir um formulario para atualizar o valor da taxa, ou prateleira que o celular está
+            * Exibir um botão, para exluir um celular, ou excluir uma taxa de um produto
+        </FrontEnd> 
+        <Backend>  // Camada entre o banco de dados e o frontend
+            <API>
+                GET : Buscar informações (bucar o celular, bucar o valor da taxa)
+                POST: Criar informações (Guardar outros produtos, guardar valores de taxas)
+                PUT: Atualizar informações (Troca de prateleira os celulares de marca XIAOMI ,Atualizar o valor da taxa-- 400)
+                DELETE: Deletar informações (Deletar o celular de marca XIAOMI, excluir uma taxa sobre um produto)
+            <API>
+        </Bakend>
+        <BancoDeDados> // Camada de gestão 
+        
+
+        //FETCH API
+        O metodo FETCH retorna um promise, que é uma promessa de uma resposta da API
+
+        then() - Se eu encontrar dados eu trago para vocês.
+        catch() - Se eu não encontrar dados eu te devolvo uma mensagem
+     -->
+</body>
+</html>

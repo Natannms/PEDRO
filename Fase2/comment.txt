@@ -1,0 +1,18 @@
+Frontend => Api => Backend => Database => Uma lista [] => transforma em Json => devolve para o frontend
+
+// www.pedro.com.br/amigos
+backend => Database => Uma lista [] =>  {
+    <html>
+        <head>
+            <title>Amigos</title>
+        </head>
+        <body>
+            <h1>Amigos</h1>
+            <ul>
+                <li>Amigo 1</li>
+                <li>Amigo 2</li>
+                <li>Amigo 3</li>
+            </ul>
+        </body>
+    </html>
+}
