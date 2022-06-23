@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>escondendo imagens com evento onmouseover e onmouseout</p>
+    <div id="listaDeImagens" style="display: flex; flex-direction:column">
+
+    </div>
+    <script>
+        const lista = [
+            'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+            'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+            'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+        ]
+
+        //cria foreach com url da lista, e key da lista
+        lista.forEach((url, indice) => {
+            const img = document.createElement('img')
+            //insere idice da lista no atributo id da imagem
+               img.setAttribute('id', indice)
+               img.setAttribute('style', 'width: 400px; margin: 10px, border: 1px solid black')
+               img.setAttribute('onmouseover', `tiraUrl(${indice})`)
+               img.setAttribute('onmouseout', `poeUrl(${indice})`)
+               img.setAttribute('src', url)    
+           //adiciona a imagem na div
+               document.getElementById('listaDeImagens').appendChild(img)
+        });
+        
+        function tiraUrl(indice){
+            //pega a imagem com o indice passado
+            const img = document.getElementsByTagName('img')[indice]
+            //insere src vazio na imagem
+            img.src = '';
+            
+        }
+
+        function poeUrl(indice){
+             //pega a imagem com o indice passado
+             const img = document.getElementsByTagName('img')[indice]
+             //insere src da lista na imagem
+            img.src = lista[indice]
+        }
+
+        //para cada imagens usar onmouseover
+
+    </script>
+</body>
+</html>
